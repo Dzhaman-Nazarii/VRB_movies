@@ -130,7 +130,9 @@ export const CreateMoviePage: FC = () => {
 						onChange={(e) =>
 							setFormData({
 								...formData,
-								actors: e.target.value.split(",").map((actor) => actor.trim()),
+								actors: e.target.value
+									.split(",")
+									.map((actor) => actor.trim()),
 							})
 						}
 						required

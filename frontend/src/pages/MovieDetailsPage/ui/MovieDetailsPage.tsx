@@ -51,22 +51,26 @@ export const MovieDetailsPage: FC = () => {
 				<div className={css.descriptionContainer}>
 					<h1 className={css.movieTitle}>{movie.title}</h1>
 					<p>{movie.description}</p>
-						<p>
-							<strong className={css.strong}>Director:</strong> {movie.director}
-						</p>
-						<p>
-							<strong className={css.strong}>Actors:</strong> {movie.actors.join(", ")}
-						</p>
-						<p>
-							<strong className={css.strong}>Genre:</strong> {movie.genre}
-						</p>
-						<p>
-							<strong className={css.strong}>Rating:</strong> {movie.rating}
-						</p>
-						<p>
-							<strong className={css.strong}>Release Date:</strong>{" "}
-							{formatReleaseDate(movie.releaseDate)}
-						</p>
+					<p>
+						<strong className={css.strong}>Director:</strong>{" "}
+						{movie.director}
+					</p>
+					<p>
+						<strong className={css.strong}>Actors:</strong>{" "}
+						{movie.actors.join(", ")}
+					</p>
+					<p>
+						<strong className={css.strong}>Genre:</strong>{" "}
+						{movie.genre}
+					</p>
+					<p>
+						<strong className={css.strong}>Rating:</strong>{" "}
+						{movie.rating}
+					</p>
+					<p>
+						<strong className={css.strong}>Release Date:</strong>{" "}
+						{formatReleaseDate(movie.releaseDate)}
+					</p>
 				</div>
 			</div>
 		</section>

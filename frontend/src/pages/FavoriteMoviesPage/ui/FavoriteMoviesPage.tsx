@@ -82,7 +82,7 @@ export const FavoriteMoviesPage: FC<FavoriteMoviesPageProps> = ({
 					))}
 				</div>
 			) : (
-				<p>No favorite movies found.</p>
+				<h2 className={css.empty}>No favorite movies yet. Add them to get started!</h2>
 			)}
 		</section>
 	);

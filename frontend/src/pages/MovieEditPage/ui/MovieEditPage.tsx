@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch } from "../../../shared/lib/hooks/useAppDispatch";
 import {
@@ -9,7 +9,7 @@ import { selectMovieDetails } from "../../../entities/Movie/model/selectors/movi
 import { useSelector } from "react-redux";
 import css from "./MovieEditPage.module.scss";
 
-export const MovieEditPage: React.FC = () => {
+export const MovieEditPage: FC = () => {
 	const { id } = useParams<{ id: string }>();
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();

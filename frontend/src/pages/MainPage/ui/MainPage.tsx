@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
 	deleteMovieById,
@@ -18,7 +18,7 @@ interface MainPageProps {
 	searchQuery: string;
 }
 
-export const MainPage: React.FC<MainPageProps> = ({ searchQuery }) => {
+export const MainPage: FC<MainPageProps> = ({ searchQuery }) => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const allMovies = useSelector(selectAllMovies);
@@ -83,7 +83,7 @@ export const MainPage: React.FC<MainPageProps> = ({ searchQuery }) => {
 					))}
 				</div>
 			) : (
-				<p>No movies found.</p>
+				<h1 className={css.empty}>No movies available. Add your movie to share with others!</h1>
 			)}
 		</section>
 	);

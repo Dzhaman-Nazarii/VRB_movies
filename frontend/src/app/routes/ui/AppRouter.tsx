@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import { Routes, Route } from "react-router-dom";
 import MainPage from "../../../pages/MainPage";
 import MovieDetailsPage from "../../../pages/MovieDetailsPage";
@@ -11,18 +11,33 @@ interface AppRouterProps {
 	searchQuery: string;
 }
 
-export const AppRouter: React.FC<AppRouterProps> = ({ searchQuery }) => {
+export const AppRouter: FC<AppRouterProps> = ({ searchQuery }) => {
 	return (
 		<Routes>
-			<Route path="/" element={<MainPage searchQuery={searchQuery} />} />
+			<Route
+				path="/"
+				element={<MainPage searchQuery={searchQuery} />}
+			/>
 			<Route
 				path="/favorites"
 				element={<FavoriteMoviesPage searchQuery={searchQuery} />}
 			/>
-			<Route path="/add" element={<CreateMoviePage />} />
-			<Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-			<Route path="/edit/:id" element={<MovieEditPage />} />
-			<Route path="*" element={<NotFoundPage />} />
+			<Route
+				path="/add"
+				element={<CreateMoviePage />}
+			/>
+			<Route
+				path="/movies/:movieId"
+				element={<MovieDetailsPage />}
+			/>
+			<Route
+				path="/edit/:id"
+				element={<MovieEditPage />}
+			/>
+			<Route
+				path="*"
+				element={<NotFoundPage />}
+			/>
 		</Routes>
 	);
 };

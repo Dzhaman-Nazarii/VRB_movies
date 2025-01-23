@@ -14,7 +14,7 @@ export const MovieListItem: FC<MovieListItemProps> = ({
 	movie,
 	onEdit,
 	onDelete,
-	onFavorite
+	onFavorite,
 }) => {
 	return (
 		<li className={css.movieItem}>
@@ -25,7 +25,7 @@ export const MovieListItem: FC<MovieListItemProps> = ({
 						className={css.favoriteButton}
 						onClick={(e) => {
 							e.preventDefault();
-							onFavorite(movie._id)
+							onFavorite(movie._id);
 						}}>
 						{movie.isFavorite ? "❤️" : "🤍"}
 					</button>
@@ -33,7 +33,7 @@ export const MovieListItem: FC<MovieListItemProps> = ({
 						className={css.editButton}
 						onClick={(e) => {
 							e.preventDefault();
-							onEdit(movie._id)
+							onEdit(movie._id);
 						}}>
 						✏️
 					</button>

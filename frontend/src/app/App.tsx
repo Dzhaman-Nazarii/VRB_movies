@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState, FC } from "react";
 import Header from "../widgets/Header";
 import AppRouter from "./routes";
 
-export const App: React.FC = () => {
+export const App: FC = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 
 	const handleSearch = (query: string) => {
@@ -11,7 +11,10 @@ export const App: React.FC = () => {
 
 	return (
 		<>
-			<Header onSearch={handleSearch} searchQuery={searchQuery} />
+			<Header
+				onSearch={handleSearch}
+				searchQuery={searchQuery}
+			/>
 			<AppRouter searchQuery={searchQuery} />
 		</>
 	);
