@@ -10,7 +10,7 @@ export const CreateMoviePage: FC = () => {
 		title: "",
 		description: "",
 		rating: 0,
-		genre: "",
+		genre: [],
 		releaseDate: "",
 		image: "",
 		isFavorite: false,
@@ -130,7 +130,9 @@ export const CreateMoviePage: FC = () => {
 						onChange={(e) =>
 							setFormData({
 								...formData,
-								actors: e.target.value.split(",").map((actor) => actor.trim()),
+								actors: e.target.value
+									.split(",")
+									.map((actor) => actor.trim()),
 							})
 						}
 						required

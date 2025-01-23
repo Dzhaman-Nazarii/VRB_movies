@@ -3,7 +3,7 @@ export interface IMovie {
 	title: string;
 	description: string;
 	rating: number;
-	genre: string;
+	genre: string[];
 	releaseDate: string;
 	image: string;
 	isFavorite: boolean;

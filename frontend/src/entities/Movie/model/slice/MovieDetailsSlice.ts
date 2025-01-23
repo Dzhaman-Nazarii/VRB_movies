@@ -14,7 +14,7 @@ const initialState: MovieDetailsState = {
 	error: null,
 };
 
-const movieDetailsSlice = createSlice({
+export const movieDetailsSlice = createSlice({
 	name: "movieDetails",
 	initialState,
 	reducers: {},
