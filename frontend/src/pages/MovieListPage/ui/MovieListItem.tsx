@@ -31,7 +31,10 @@ export const MovieListItem: FC<MovieListItemProps> = ({
 					</button>
 					<button
 						className={css.editButton}
-						onClick={() => onEdit(movie._id)}>
+						onClick={(e) => {
+							e.preventDefault();
+							onEdit(movie._id)
+						}}>
 						✏️
 					</button>
 					<button

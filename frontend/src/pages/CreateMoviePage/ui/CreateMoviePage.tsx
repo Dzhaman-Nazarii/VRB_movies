@@ -10,7 +10,7 @@ export const CreateMoviePage: FC = () => {
 		title: "",
 		description: "",
 		rating: 0,
-		genre: "",
+		genre: [],
 		releaseDate: "",
 		image: "",
 		isFavorite: false,

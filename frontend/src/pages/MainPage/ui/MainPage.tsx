@@ -10,7 +10,7 @@ import {
 	selectMoviesIsLoading,
 } from "../../../entities/Movie/model/selectors/moviesSelectors";
 import MovieListItem from "../../MovieListPage";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import css from "./MainPage.module.scss";
 import { toggleFavoriteMovie } from "../../../entities/Movie/model/services/toggleFavoriteMovie";
 
@@ -20,6 +20,7 @@ interface MainPageProps {
 
 export const MainPage: React.FC<MainPageProps> = ({ searchQuery }) => {
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 	const allMovies = useSelector(selectAllMovies);
 	const isLoading = useSelector(selectMoviesIsLoading);
 
@@ -47,7 +48,6 @@ export const MainPage: React.FC<MainPageProps> = ({ searchQuery }) => {
 	const handleDelete = async (movieId: string) => {
 		try {
 			await dispatch(deleteMovieById(movieId));
-			console.log("Movie deleted successfully");
 		} catch (error) {
 			console.error("Error during delete:", error);
 		}
@@ -55,11 +55,15 @@ export const MainPage: React.FC<MainPageProps> = ({ searchQuery }) => {
 
 	const handleFavoriteToggle = async (movieId: string) => {
 		try {
-		  await dispatch(toggleFavoriteMovie(movieId));
+			await dispatch(toggleFavoriteMovie(movieId));
 		} catch (error) {
-		  console.error('Error during toggle favorite:', error);
+			console.error("Error during toggle favorite:", error);
 		}
-	  };
+	};
+
+	const handleEdit = (movieId: string) => {
+		navigate(`/edit/${movieId}`);
+	};
 
 	return (
 		<section className={css.pageWrapper}>
@@ -71,7 +75,7 @@ export const MainPage: React.FC<MainPageProps> = ({ searchQuery }) => {
 							to={`/movies/${movie._id}`}>
 							<MovieListItem
 								movie={movie}
-								onEdit={() => console.log("onEdit")}
+								onEdit={() => handleEdit(movie._id)}
 								onDelete={handleDelete}
 								onFavorite={handleFavoriteToggle}
 							/>

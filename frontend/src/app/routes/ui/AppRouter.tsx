@@ -21,7 +21,7 @@ export const AppRouter: React.FC<AppRouterProps> = ({ searchQuery }) => {
 			/>
 			<Route path="/add" element={<CreateMoviePage />} />
 			<Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-			<Route path="/movies/edit/:id" element={<MovieEditPage />} />
+			<Route path="/edit/:id" element={<MovieEditPage />} />
 			<Route path="*" element={<NotFoundPage />} />
 		</Routes>
 	);
