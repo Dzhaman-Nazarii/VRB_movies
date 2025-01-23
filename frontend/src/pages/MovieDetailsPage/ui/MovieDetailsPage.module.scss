@@ -1,0 +1,31 @@
+.pageWrapper {
+	padding: 30px 0;
+}
+
+.movieDetails {
+	justify-content: center;
+	gap: 50px;
+	padding: 30px;
+	display: flex;
+}
+
+.descriptionContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	width: 400px;
+}
+
+.movieImage {
+	width: 400px;
+	border-radius: 5px;
+}
+
+.movieTitle {
+	font-weight: bold;
+	font-size: 50px;
+}
+
+.strong {
+	font-size: 18px;
+}
