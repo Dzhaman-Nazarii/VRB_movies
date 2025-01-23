@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IMovie, IMoviesSchema } from "../types/Movie";
 import { fetchAllMovies } from "../services/fetchAllMovies";
-import { fetchAllFavoritesMovies } from "../services/fetchAllFavoriteMovies";
-import { IMoviesSchema } from "../types/Movie";
+import { deleteMovieById} from "../services";
+import { toggleFavoriteMovie } from "../services/toggleFavoriteMovie";
 
 const initialState: IMoviesSchema = {
   data: [],
-  favorites: [],
   isLoading: false,
   error: null,
 };
@@ -20,7 +20,7 @@ export const movieSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(fetchAllMovies.fulfilled, (state, action: PayloadAction<any[]>) => {
+      .addCase(fetchAllMovies.fulfilled, (state, action: PayloadAction<IMovie[]>) => {
         state.data = action.payload;
         state.isLoading = false;
       })
@@ -28,18 +28,18 @@ export const movieSlice = createSlice({
         state.error = action.payload as string;
         state.isLoading = false;
       })
-      .addCase(fetchAllFavoritesMovies.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchAllFavoritesMovies.fulfilled, (state, action) => {
-        state.favorites = action.payload;
+      .addCase(deleteMovieById.fulfilled, (state, action: PayloadAction<string>) => {
+        state.data = state.data.filter(
+          (movie) => movie._id !== action.payload
+        );
         state.isLoading = false;
       })
-      .addCase(fetchAllFavoritesMovies.rejected, (state, action) => {
-        state.error = action.payload as string;
-        state.isLoading = false;
-      });
+      .addCase(toggleFavoriteMovie.fulfilled, (state, action: PayloadAction<IMovie>) => {
+        const index = state.data.findIndex((movie) => movie._id === action.payload._id);
+        if (index !== -1) {
+          state.data[index] = action.payload;
+        }
+      })
   },
 });
 

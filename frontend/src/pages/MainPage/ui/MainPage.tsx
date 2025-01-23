@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { fetchAllMovies } from "../../../entities/Movie/model/services";
+import {
+	deleteMovieById,
+	fetchAllMovies,
+} from "../../../entities/Movie/model/services";
 import { useAppDispatch } from "../../../shared/lib/hooks/useAppDispatch";
 import {
 	selectAllMovies,
@@ -9,6 +12,7 @@ import {
 import MovieListItem from "../../MovieListPage";
 import { Link } from "react-router-dom";
 import css from "./MainPage.module.scss";
+import { toggleFavoriteMovie } from "../../../entities/Movie/model/services/toggleFavoriteMovie";
 
 interface MainPageProps {
 	searchQuery: string;
@@ -40,24 +44,36 @@ export const MainPage: React.FC<MainPageProps> = ({ searchQuery }) => {
 		return <p>Loading...</p>;
 	}
 
-	const handleAddToFavorites = () => {
-		console.log("handleAddToFavorites");
+	const handleDelete = async (movieId: string) => {
+		try {
+			await dispatch(deleteMovieById(movieId));
+			console.log("Movie deleted successfully");
+		} catch (error) {
+			console.error("Error during delete:", error);
+		}
 	};
 
-	const handleEdit = () => {
-		console.log("handleEdit");
-	};
+	const handleFavoriteToggle = async (movieId: string) => {
+		try {
+		  await dispatch(toggleFavoriteMovie(movieId));
+		} catch (error) {
+		  console.error('Error during toggle favorite:', error);
+		}
+	  };
 
 	return (
 		<section className={css.pageWrapper}>
 			{filteredMovies.length > 0 ? (
 				<div className={css.movieList}>
 					{filteredMovies.map((movie) => (
-						<Link key={movie._id} to={`/movies/${movie._id}`}>
+						<Link
+							key={movie._id}
+							to={`/movies/${movie._id}`}>
 							<MovieListItem
 								movie={movie}
-								onAddToFavorites={handleAddToFavorites}
-								onEdit={handleEdit}
+								onEdit={() => console.log("onEdit")}
+								onDelete={handleDelete}
+								onFavorite={handleFavoriteToggle}
 							/>
 						</Link>
 					))}

@@ -15,5 +15,4 @@ export interface IMoviesSchema {
 	isLoading: boolean;
 	error?: string | null;
 	data: IMovie[];
-	favorites: IMovie[];
 }

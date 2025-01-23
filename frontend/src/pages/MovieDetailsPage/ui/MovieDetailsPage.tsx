@@ -20,7 +20,6 @@ export const MovieDetailsPage: FC = () => {
 
 	useEffect(() => {
 		if (movieId) {
-			console.log(`Fetching details for movie with id: ${movieId}`);
 			dispatch(fetchMovieById(movieId));
 		}
 	}, [movieId, dispatch]);
